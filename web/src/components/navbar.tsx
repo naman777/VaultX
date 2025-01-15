@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-gray-800"
@@ -21,28 +21,41 @@ export default function Navbar() {
               <span className="text-white text-xl font-bold">VaultX</span>
             </Link>
           </div>
-          
+
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="#features" className="text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="#features"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               Features
             </Link>
-            <Link href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="#how-it-works"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               How It Works
             </Link>
-            <Link href="#pricing" className="text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="#pricing"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               Pricing
             </Link>
-            <Link href="#blog" className="text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="#blog"
+              className="text-gray-300 hover:text-white transition-colors"
+            >
               Blog
             </Link>
           </div>
 
           <Button variant="default" className="bg-blue-600 hover:bg-blue-700">
-            Get Started
+            <Link href="/signin" className="text-white">
+              Get Started
+            </Link>
           </Button>
         </div>
       </div>
     </motion.nav>
-  )
+  );
 }
-

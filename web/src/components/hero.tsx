@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Sparkles } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Hero() {
   return (
@@ -50,7 +51,9 @@ export default function Hero() {
         >
           <span className="mr-2">Join the Future of File Sharing Now!</span>
           <Button variant="ghost" size="sm" className="text-white">
+            <Link href="/signin" className="text-white">
             Get Started →
+            </Link>
           </Button>
         </motion.div>
       </div>

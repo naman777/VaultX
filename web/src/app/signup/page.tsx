@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,7 @@ import { Icons } from "@/components/icons";
 import { createUser } from "@/actions/auth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
 
 export default function SignUpPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +18,20 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
+  
+  const {data:session, status} = useSession();
+
+  useEffect(() => {
+    if (status === "loading") {
+      return;
+    }
+
+    if (session) {
+      toast.error("You need to be logged in to access this page.");
+      router.push("/dashboard");
+      return;
+    } 
+  }, [session, status]);
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
@@ -38,7 +53,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="container relative min-h-screen flex-col items-center justify-center grid lg:max-w-[500px] lg:grid-cols-2 lg:px-0">
+    <div className="container  relative min-h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link
         href="/signin"
         className="absolute right-4 top-4 md:right-8 md:top-8"
@@ -71,7 +86,7 @@ export default function SignUpPage() {
           </blockquote>
         </motion.div>
       </div>
-      <div className="lg:p-8">
+      <div className="lg:p-8 p-12">
         <motion.div
           className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]"
           initial={{ opacity: 0, y: 20 }}

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/icons";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -38,6 +38,20 @@ export default function SignInPage() {
     }
 
   }
+
+  const {data:session, status} = useSession();
+
+  useEffect(() => {
+    if (status === "loading") {
+      return;
+    }
+
+    if (session) {
+      toast.error("You need to be logged in to access this page.");
+      router.push("/dashboard");
+      return;
+    } 
+  }, [session, status]);
 
   return (
     <div className="container  relative min-h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
