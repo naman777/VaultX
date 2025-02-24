@@ -32,14 +32,13 @@ export default function SignInPage() {
       setIsLoading(false);
       return;
     } else {
-        toast.success("Successfully logged in.");
-        router.push("/dashboard");
-        return;
+      toast.success("Successfully logged in.");
+      router.push("/dashboard");
+      return;
     }
-
   }
 
-  const {data:session, status} = useSession();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (status === "loading") {
@@ -50,7 +49,7 @@ export default function SignInPage() {
       toast.error("You need to be logged in to access this page.");
       router.push("/dashboard");
       return;
-    } 
+    }
   }, [session, status]);
 
   return (

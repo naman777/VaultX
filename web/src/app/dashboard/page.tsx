@@ -97,7 +97,7 @@ export default function Dashboard() {
 
     setLoading(false);
     if (!session) {
-      toast.error("You need to be logged in to access this page.");
+      // toast.error("You need to be logged in to access this page.");
       router.push("/signin");
       return;
     } else {
