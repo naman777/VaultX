@@ -33,6 +33,8 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [fileUploading, setFileUploading] = useState(false);
 
+  
+
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     const newFiles = acceptedFiles.map((file) => ({
       id: Math.random().toString(36).substr(2, 9), // Temporary ID
@@ -104,7 +106,8 @@ export default function Dashboard() {
       const fetchData = async () => {
         const res = await getFiles(session.user.email);
         if (res.success) {
-          setFiles(res.files || []);
+          setFiles(res.files?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()) || []);
+
         }
       };
 

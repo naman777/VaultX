@@ -27,7 +27,7 @@ export default function SignUpPage() {
     }
 
     if (session) {
-      toast.error("You need to be logged in to access this page.");
+      // toast.error("You need to be logged in to access this page.");
       router.push("/dashboard");
       return;
     } 
