@@ -82,7 +82,7 @@ export default function SignInPage() {
               &ldquo;VaultX provides the security and ease of use that we've
               always wanted in a file sharing platform.&rdquo;
             </p>
-            <footer className="text-sm">Alex Johnson</footer>
+            <footer className="text-sm">Naman Kundra</footer>
           </blockquote>
         </motion.div>
       </div>
