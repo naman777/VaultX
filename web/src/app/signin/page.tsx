@@ -63,10 +63,13 @@ export default function SignInPage() {
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-800 to-blue-600" />
         <motion.div
-          className="relative z-20 flex items-center text-lg font-medium"
+          className="relative z-20 flex items-center text-lg font-medium cursor-pointer"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
+          onClick={() => {
+            router.push("/")
+          }}
         >
           <Icons.logo className="mr-2 h-6 w-6" />
           VaultX
