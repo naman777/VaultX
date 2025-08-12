@@ -8,20 +8,36 @@ datasource db {
 }
 
 model user {
-  id        String   @id @default(uuid())
-  email     String   @unique
+  id        String    @id @default(uuid())
+  email     String    @unique
   password  String
   files     file[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  folders   folder[]  // A user can have multiple folders
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model folder {
+  id         String     @id @default(uuid())
+  name       String
+  user_id    String
+  user       user       @relation(fields: [user_id], references: [id])
+  parent_id  String?    // For nested folders
+  parent     folder?    @relation("FolderHierarchy", fields: [parent_id], references: [id])
+  children   folder[]   @relation("FolderHierarchy")
+  files      file[]     // Files inside this folder
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 }
 
 model file {
-  id        String   @id @default(uuid())
-  name      String
-  url       String
+  id         String    @id @default(uuid())
+  name       String
+  url        String
   user_id    String
-  user      user     @relation(fields: [user_id], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user       user      @relation(fields: [user_id], references: [id])
+  folder_id  String?   // Optional: null means file is in root
+  folder     folder?   @relation(fields: [folder_id], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 }
