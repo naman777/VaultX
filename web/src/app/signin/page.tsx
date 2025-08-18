@@ -21,8 +21,11 @@ export default function SignInPage() {
     event.preventDefault();
     setIsLoading(true);
 
+
+    const email = username.toLowerCase();
+
     const result = await signIn("credentials", {
-      username,
+      username: email,
       password,
       redirect: false, // Change to false if you want to handle redirection manually
     });

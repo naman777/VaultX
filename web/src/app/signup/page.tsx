@@ -18,8 +18,8 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
-  
-  const {data:session, status} = useSession();
+
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (status === "loading") {
@@ -30,25 +30,27 @@ export default function SignUpPage() {
       // toast.error("You need to be logged in to access this page.");
       router.push("/dashboard");
       return;
-    } 
+    }
   }, [session, status]);
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
 
-    const user = await createUser(username, password);
+    const email = username.toLowerCase();
+
+    const user = await createUser(email, password);
 
     setIsLoading(false);
 
-    if(user.success) {
-        toast.success("Account created successfully. Please sign in.");
-        router.push("/signin");
-        return;
+    if (user.success) {
+      toast.success("Account created successfully. Please sign in.");
+      router.push("/signin");
+      return;
     }
-    else{
-        toast.error(user.message);
-        return;
+    else {
+      toast.error(user.message);
+      return;
     }
   }
 
@@ -67,7 +69,7 @@ export default function SignUpPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          onClick={()=>{
+          onClick={() => {
             router.push("/")
           }}
         >
