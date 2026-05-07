@@ -41,3 +41,14 @@ model file {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
+
+// Anonymous file sharing: anyone can upload with a custom unique name
+model shared_file {
+  id          String   @id @default(uuid())
+  slug        String   @unique  // user-chosen unique name (e.g. "my-report")
+  storage_key String            // actual key in R2 bucket
+  original_name String          // original filename with extension
+  mime_type   String
+  size        Int
+  createdAt   DateTime @default(now())
+}
