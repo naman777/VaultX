@@ -180,18 +180,7 @@ export default function SharePage() {
   return (
     <div className="min-h-screen bg-[#080c14] text-white overflow-hidden">
       {/* Ambient background */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </div>
+   
 
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between px-8 py-5 border-b border-white/5">
