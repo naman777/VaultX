@@ -1,7 +1,0 @@
-onlyBuiltDependencies:
-  - '@prisma/client'
-  - '@prisma/engines'
-  - aws-sdk
-  - prisma
-  - sharp
-  - unrs-resolver
